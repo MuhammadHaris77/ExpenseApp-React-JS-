@@ -13,7 +13,7 @@ function App() {
   const addAmount = () => {
     const amount = parseFloat(inputVal);
 
-    if (!amount) {
+    if (!amount ) {
       alert("please Enter Expense? ")
       return
     }
@@ -23,7 +23,18 @@ function App() {
       const newCashIn = cashIn + amount;
 
       setCashIn(newCashIn)
+        
+      if(Balance === 0 ){
       setBalance(newCashIn)
+        
+      } else{
+        if(category === "Cash In"){
+      const newBalance = Balance + amount
+      setBalance(newBalance)
+          
+        }
+
+      }   
       setHistory([...history, { date: new Date(), amount, category, categoryType }])
 
     } else if (category === "Cash Out") {
