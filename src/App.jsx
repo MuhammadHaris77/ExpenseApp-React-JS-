@@ -13,7 +13,7 @@ function App() {
   const addAmount = () => {
     const amount = parseFloat(inputVal);
 
-    if (!amount ) {
+    if (!amount) {
       alert("please Enter Expense? ")
       return
     }
@@ -23,18 +23,18 @@ function App() {
       const newCashIn = cashIn + amount;
 
       setCashIn(newCashIn)
-        
-      if(Balance === 0 ){
-      setBalance(newCashIn)
-        
-      } else{
-        if(category === "Cash In"){
-      const newBalance = Balance + amount
-      setBalance(newBalance)
-          
+
+      if (Balance === 0) {
+        setBalance(newCashIn)
+
+      } else {
+        if (category === "Cash In") {
+          const newBalance = Balance + amount
+          setBalance(newBalance)
+
         }
 
-      }   
+      }
       setHistory([...history, { date: new Date(), amount, category, categoryType }])
 
     } else if (category === "Cash Out") {
@@ -58,15 +58,15 @@ function App() {
       <div className='container'>
         <div className='row  text-center  '>
           <div className='col'>
-            <button type="button" style={{ width: "100%" }} className="btn btn-dark p-3 m-3"><h1>Cash In</h1></button>
+            <button type="button" style={{ width: "100%" }} className="btn rounded btn-dark p-3 m-3"><h1>Cash In</h1></button>
             <h1>{cashIn ? cashIn : 0}</h1>
           </div>
           <div className='col'>
-            <button type="button" style={{ width: "100%" }} className="btn btn-dark p-3  m-3"><h1>Cash  Out</h1></button>
+            <button type="button" style={{ width: "100%" }} className="btn rounded btn-dark p-3  m-3"><h1>Cash  Out</h1></button>
             <h1>{cashOut ? cashOut : 0}</h1>
           </div>
           <div className='col'>
-            <button type="button" style={{ width: "100%" }} className="btn btn-dark p-3  m-3"><h1>Balance</h1></button>
+            <button type="button" style={{ width: "100%" }} className="btn rounded btn-dark p-3  m-3"><h1>Balance</h1></button>
             <h1>{Balance ? Balance : 0}</h1>
           </div>
 
@@ -74,14 +74,14 @@ function App() {
         </div>
 
       </div>
-      <div className="d-flex flex-wrap  justify-content-center text-center  m-4">
+      <div className="d-flex flex-wrap  justify-content-center text-center p-4 m-4">
         <div className='px-3'>
-          <input type="text" required value={inputVal} onChange={(e) => (setInputVal(e.target.value))} style={{ width: "500px", padding: "15px", }} className="form-control" placeholder="Enter Your Amount" aria-label="Username" aria-describedby="basic-addon1" />
+          <input type="text" required value={inputVal} onChange={(e) => (setInputVal(e.target.value))} style={{ width: "100%", padding: "15px", }} className="form-control" placeholder="Enter Your Amount" aria-label="Username" aria-describedby="basic-addon1" />
 
         </div>
 
         <div className="dropdown ">
-          <select className="btn btn-dark dropdown-toggle p-3 mx-3" type="button" /* data-bs-toggle="dropdown"*/ aria-expanded="false"
+          <select className="btn rounded btn-dark dropdown-toggle p-3 mx-3" type="button" /* data-bs-toggle="dropdown"*/ aria-expanded="false"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
@@ -96,7 +96,7 @@ function App() {
         <div className="dropdown ">
           {category === "Cash In" &&
 
-            <select className="btn btn-dark dropdown-toggle p-3  mx-3" type="button" /* data-bs-toggle="dropdown"*/ aria-expanded="false"
+            <select className="btn rounded btn-dark dropdown-toggle p-3  mx-3" type="button" /* data-bs-toggle="dropdown"*/ aria-expanded="false"
               value={categoryType}
               onChange={(e) => setCategoryType(e.target.value)}
               required
@@ -111,7 +111,7 @@ function App() {
           }
           {category === "Cash Out" &&
 
-            <select className="btn btn-dark dropdown-toggle p-3  mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+            <select className="btn rounded btn-dark dropdown-toggle p-3  mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false"
               value={categoryType}
               onChange={(e) => setCategoryType(e.target.value)}
               required
@@ -141,7 +141,7 @@ function App() {
       </div >
 
       <div className='text-center  m-4  '>
-        <button type="button" style={{ width: "25%" }} className=" text-center btn btn-success p-3" onClick={addAmount}>Add Amount</button>
+        <button type="button"  className=" text-center btn btn-success p-3" onClick={addAmount}>Add Amount</button>
       </div>
 
 
@@ -149,9 +149,11 @@ function App() {
         <ul className="list-group ">
           {
             history.map((item, index) => {
-              return <li className="list-group-item bg-light" key={index}><h2> Description : {item.categoryType}</h2> <h4>Amount : {item.amount} </h4> <h4>Category : {item.category} </h4><h4>Date : {item.date.toLocaleDateString()} </h4> <h4>Time : {item.date.toLocaleTimeString()
-              } </h4>
+              return  <ul  className='p-2 rounded'>
+                 <li className="list-group-item bg-light p-3 d-flex flex-wrap justify-content-between " style={{width:"100%"}} key={index}><span>  {item.categoryType}</span> <span>Amount : {item.amount} </span> <span>Category : {item.category} </span><span>Date : {item.date.toLocaleDateString()} </span> <span>Time : {item.date.toLocaleTimeString()
+              } </span>
               </li>
+              </ul>
             })
           }
         </ul>
